@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+
+    <title>Grand Rapids Tech Events</title>
+</head>
+<body>
+<div class="container">
+    <h3>DONT FORGET TO DO YOUR SHIT</h3>
+    <hr>
+    <a th:href="@{/events/showFormForAdd}"
+       class="btn btn-success btn-sm mb-3">
+        Submit Event
+    </a>
+
+
+    <!-- use only data for events happening today -->
+    <h3>Events Happening Today</h3>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Event</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Time</th>
+            <th></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="tempEvent: ${events}">
+            <td th:text="${tempEvent.eventName}"></td>
+            <td th:text="${tempEvent.eventDescription}"></td>
+            <td th:text="${tempEvent.eventLocation}"></td>
+            <td th:text="${tempEvent.eventDate}"></td>
+            <td th:text="${tempEvent.startTime}"></td>
+            <td th:text="${tempEvent.endTime}"></td>
+
+            <!-- update methods -->
+            <td>
+                <!--  *** convert to modal pop up -->
+                <a th:href="@{/events/showFormForUpdate(employeeId=${tempEmployee.id})}"
+                   class="btn btn-info btn-sm">
+                    More Info
+                </a>
+
+                <!-- convert to RSVP form redirect-->
+                <a th:href="@{/events/showFormForRSVP(eventId=${tempEvent.id})}"
+                   class="btn btn-danger btn-sm"
+                   >
+                    RSVP
+                </a>
+            </td>
+        </tr>
+
+        </tbody>
+
+
+    </table>
+</div>
+</body>
+</html>
