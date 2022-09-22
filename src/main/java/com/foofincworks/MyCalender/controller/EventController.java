@@ -3,8 +3,7 @@ package com.foofincworks.MyCalender.controller;
 import com.foofincworks.MyCalender.entity.Event;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
@@ -64,5 +63,33 @@ public class EventController {
 
         return "event-form";
     }
+
+    @PostMapping("/save")
+    public String saveEvent(@ModelAttribute("event") Event event) {
+
+        event.setId(1000);
+
+        events.add(event);
+
+        return "redirect:/events/list";
+    }
+
+    @GetMapping("showFormForRSVP")
+    public String showFormForRSVP(@RequestParam("eventId") int id, Model model) {
+
+        Event event = null;
+
+        for (Event e : events) {
+            if (e.getId() == id) {
+                event = e;
+            }
+        }
+
+        model.addAttribute("event", event);
+
+        return "rsvp-form";
+
+    }
+
 
 }

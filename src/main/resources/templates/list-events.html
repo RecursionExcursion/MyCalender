@@ -40,6 +40,7 @@
             <th class="text-center">Location</th>
             <th class="text-center">Time</th>
             <th class="text-center">Description</th>
+            <th></th>
           </tr>
         </thead>
 
@@ -60,7 +61,7 @@
             <td th:text="${tempEvent.endTime}"></td> -->
 
             <!-- update methods -->
-            <!--            <td>-->
+                        <td>
             <!--                &lt;!&ndash;  *** convert to modal pop up &ndash;&gt;-->
             <!--                <a th:href="@{/events/showFormForUpdate(employeeId=${tempEmployee.id})}"-->
             <!--                   class="btn btn-info btn-sm">-->
@@ -68,12 +69,12 @@
             <!--                </a>-->
 
             <!--                &lt;!&ndash; convert to RSVP form redirect&ndash;&gt;-->
-            <!--                <a th:href="@{/events/showFormForRSVP(eventId=${tempEvent.id})}"-->
-            <!--                   class="btn btn-danger btn-sm"-->
-            <!--                   >-->
-            <!--                    RSVP-->
-            <!--                </a>-->
-            <!--            </td>-->
+                            <a th:href="@{/events/showFormForRSVP(eventId=${tempEvent.id})}"
+                               class="btn btn-danger btn-sm"
+                               >
+                                RSVP
+                            </a>
+                        </td>
           </tr>
         </tbody>
       </table>

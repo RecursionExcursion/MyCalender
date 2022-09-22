@@ -1,57 +1,58 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
+<head>
     <!-- Required meta tags -->
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
     <!-- Bootstrap CSS -->
     <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous"
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
     />
 
     <title>Event RSVP</title>
-  </head>
-  <body>
-    <div class="container">
+</head>
+<body>
+<div class="container">
 
-      <h1 th:text="${tempEvent.eventName}"></h3>
-        <h2 th:text="${tempEvent.eventDescription}"></h2>
-        <h2 th:text="${tempEvent.eventLocation}"></h2>
-        <h2 th:text="${tempEvent.eventDate}"></h2>
-        <h2 th:text="${tempEvent.startTime}"></h2>
-        <h2 th:text="${tempEvent.endTime}"></h2>
-      <hr />
-    
 
-      <form
-        action="#"
-        th:action="@{/events/save}"
-        th:object="${event}"
-        method="post"
-      >
-        <input type="hidden" th:field="*{id}" />
+    <form
+            action="#"
+            th:action="@{/events/save}"
+            th:object="${event}"
+            method="post"
+    >
 
-        <input type="text" th:field="*{firstName}"
-        class="form-control mb-4 col-4" placeholder="First Name">
+        <h1 th:text="*{eventName}"></h1>
+        <h2 th:text="*{eventDescription}"></h2>
+        <h2 th:text="*{eventLocation}"></h2>
+        <h2 th:text="*{eventDate}"></h2>
+        <h2 th:text="*{startTime}"></h2>
+        <h2 th:text="*{endTime}"></h2>
+        <hr/>
 
-        <input type="text" th:field="*{lastName}"
-        class="form-control mb-4 col-4" placeholder="Last Name">
+        <input type="hidden" th:field="*{id}"/>
 
-        <input type="text" th:field="*{email}"
-        class="form-control mb-4 col-4" placeholder="Email Address">
+        <input type="text"
+               class="form-control mb-4 col-4" placeholder="First Name">
+
+        <input type="text"
+               class="form-control mb-4 col-4" placeholder="Last Name">
+
+        <input type="text"
+               class="form-control mb-4 col-4" placeholder="Email Address">
 
         <button type="submit" class="btn btn-info col-2">RSVP For Event</button>
-      </form>
-      <hr />
-   
-      <a th:href="@{/events/list}">Back to Event List</a>
-    </div>
-  </body>
+    </form>
+    <hr/>
+
+    <a th:href="@{/events/list}">Back to Event List</a>
+</div>
+</body>
 </html>
