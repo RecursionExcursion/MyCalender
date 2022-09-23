@@ -16,22 +16,29 @@
       crossorigin="anonymous"
     />
 
-    <title>Grand Rapids Tech Events</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa+Ink:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="../style.css" />
+
+    <title>FI Events</title>
   </head>
   <body>
     <div class="container">
-      <h3>DONT FORGET TO DO YOUR SHIT</h3>
-      <hr />
-      <a
-        th:href="@{/events/showFormForAdd}"
-        class="btn btn-success btn-sm mb-3"
-      >
-        Submit Event
-      </a>
+      <header>
+        <img src="../assets/images/logo.PNG" alt="" />
+        <h3 class="companyName">Foofers Inc. <br/> Event Calendar</h3>
+      </header>
+
+      
 
       <!-- use only data for events happening today -->
-      <h3>Events Happening Today</h3>
-      <div>
+      <h3 class="eventsHeading">Events Happening Soon</h3>
+
       <table class="table table-bordered table-striped">
         <thead class="thead-dark">
           <tr>
@@ -40,7 +47,7 @@
             <th class="text-center">Location</th>
             <th class="text-center">Time</th>
             <th class="text-center">Description</th>
-            <th></th>
+            <th>RSVP</th>
           </tr>
         </thead>
 
@@ -61,23 +68,31 @@
             <td th:text="${tempEvent.endTime}"></td> -->
 
             <!-- update methods -->
-                        <td>
-            <!--                &lt;!&ndash;  *** convert to modal pop up &ndash;&gt;-->
-            <!--                <a th:href="@{/events/showFormForUpdate(employeeId=${tempEmployee.id})}"-->
-            <!--                   class="btn btn-info btn-sm">-->
-            <!--                    More Info-->
-            <!--                </a>-->
+            <td>
+              <!--                &lt;!&ndash;  *** convert to modal pop up &ndash;&gt;-->
+              <!--                <a th:href="@{/events/showFormForUpdate(employeeId=${tempEmployee.id})}"-->
+              <!--                   class="btn btn-info btn-sm">-->
+              <!--                    More Info-->
+              <!--                </a>-->
 
-            <!--                &lt;!&ndash; convert to RSVP form redirect&ndash;&gt;-->
-                            <a th:href="@{/events/showFormForRSVP(eventId=${tempEvent.id})}"
-                               class="btn btn-danger btn-sm"
-                               >
-                                RSVP
-                            </a>
-                        </td>
+              <!--                &lt;!&ndash; convert to RSVP form redirect&ndash;&gt;-->
+              <a
+                th:href="@{/events/showFormForRSVP(eventId=${tempEvent.id})}"
+                class="btn btn-danger btn-sm"
+              >
+                RSVP
+              </a>
+            </td>
           </tr>
         </tbody>
       </table>
+
+      <a
+        th:href="@{/events/showFormForAdd}"
+        class="btn btn-success btn-sm mb-3"
+      >
+        Submit Event
+      </a>
     </div>
   </body>
 </html>
