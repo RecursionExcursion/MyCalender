@@ -1,0 +1,73 @@
+body{
+    background-color: rgb(253, 252, 251);
+    font-family: 'Aref Ruqaa Ink', serif;
+    font-weight: 700;
+}
+
+
+.table{
+    background-color: #F4D8C0;
+    color: #008BA8;
+    border: 3px #AD7F56 solid;
+}
+
+.btn:hover{
+    background-color: #5CD8F2;
+    border-color: #AD7F56;
+}
+
+.btn{
+    background-color: #008BA8;
+    border-color: #AD7F56;
+}
+
+h3{
+    text-align: center;
+}
+
+.eventsHeading{
+    font-weight: 700;
+    font-size: 2rem;
+    color: #5CD8F2;
+    margin: 15px 0px 20px 0px;
+}
+
+@media screen and (max-width: 850px) {
+    .companyName{
+        font-weight: 700;
+        color: #008BA8;
+        font-size: 3rem;
+        flex: 2;
+        margin: 15px 0px 40px 0px;
+    }
+    
+    img{
+        height: 150px;
+        flex: 1;
+    }
+}
+
+@media screen and (min-width: 851px){
+    .companyName{
+        font-weight: 700;
+        color: #008BA8;
+        font-size: 3rem;
+        flex: 4;
+        margin: 15px 0px 40px 0px;
+    }
+    
+    img{
+        height: 150px;
+        flex: 1;
+    }
+}
+
+header{
+    display: flex;
+    border-bottom: 1px black solid;
+}
+
+a{
+    color: #008BA8;
+}
+
