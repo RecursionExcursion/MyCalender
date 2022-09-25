@@ -1,6 +1,8 @@
 package com.foofincworks.MyCalender.controller;
 
 import com.foofincworks.MyCalender.entity.Event;
+import com.foofincworks.MyCalender.service.mail.EmailSenderService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,8 +15,13 @@ import java.util.List;
 @RequestMapping("/events")
 public class EventController {
 
-
+    private EmailSenderService emailSenderService;
     private List<Event> events;
+
+    @Autowired
+    public EventController(EmailSenderService emailSenderService) {
+        this.emailSenderService = emailSenderService;
+    }
 
     //For testing w/o DB set up
     @PostConstruct
@@ -67,9 +74,19 @@ public class EventController {
     @PostMapping("/save")
     public String saveEvent(@ModelAttribute("event") Event event) {
 
-        event.setId(1000);
+        String toEmail = "cklawieter@gmail.com";
 
-        events.add(event);
+        String subject = "New event submission";
+
+        String body = "Event name- " + event.getEventName() +
+                "\n Event Date- " + event.getEventDate() +
+                "\n Event Location- " + event.getEventLocation() +
+                "\n Event Start Time- " + event.getStartTime() +
+                "\n Event End Time- " + event.getEndTime() +
+                "\n Event Description- " + event.getEventDescription();
+
+
+        emailSenderService.sendSimpleEmail(toEmail, body, subject);
 
         return "redirect:/events/list";
     }
