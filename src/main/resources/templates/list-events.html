@@ -23,7 +23,7 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
 
     <title>FI Events</title>
   </head>
@@ -34,7 +34,7 @@
         <h3 class="companyName">Foofers Inc. <br/> Event Calendar</h3>
       </header>
 
-      
+
 
       <!-- use only data for events happening today -->
       <h3 class="eventsHeading">Events Happening Soon</h3>
@@ -93,6 +93,10 @@
       >
         Submit Event
       </a>
+      <div sec:authorize="isAuthenticated()">
+        <a href="/logout">Logout</a>
+      </div>
     </div>
+
   </body>
 </html>
