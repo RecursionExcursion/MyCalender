@@ -58,7 +58,7 @@ public class EventController {
     @GetMapping("/list")
     public String listEvents(Model model) {
         model.addAttribute("events", events);
-        return "list-events";
+        return "event/list-events";
     }
 
     @GetMapping("showFormForAdd")
@@ -68,7 +68,7 @@ public class EventController {
 
         model.addAttribute("event", newEvent);
 
-        return "event-form";
+        return "event/event-form";
     }
 
     @PostMapping("/save")
@@ -88,7 +88,7 @@ public class EventController {
 
         emailSenderService.sendSimpleEmail(toEmail, body, subject);
 
-        return "redirect:/events/list";
+        return "redirect:event/events/list";
     }
 
     @GetMapping("showFormForRSVP")
@@ -104,7 +104,7 @@ public class EventController {
 
         model.addAttribute("event", event);
 
-        return "rsvp-form";
+        return "event/rsvp-form";
 
     }
 
