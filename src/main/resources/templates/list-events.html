@@ -93,7 +93,7 @@
       >
         Submit Event
       </a>
-      <div sec:authorize="isAuthenticated()">
+      <div sec:authorize="hasRole('ADMIN')">
         <a href="/logout">Logout</a>
       </div>
     </div>
