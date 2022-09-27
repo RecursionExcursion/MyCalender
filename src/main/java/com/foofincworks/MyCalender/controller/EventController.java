@@ -27,7 +27,10 @@ public class EventController {
     @GetMapping("/list")
     public String listEvents(Model model) {
         List<Event> events = eventService.getAll();
-        model.addAttribute("events", events);
+
+        List<Event> approvedEvents = events.stream().filter(Event::isApproved).toList();
+
+        model.addAttribute("events", approvedEvents);
         return "event/list-events";
     }
 
@@ -58,7 +61,15 @@ public class EventController {
 
         emailSenderService.sendSimpleEmail(toEmail, body, subject);
 
-        return "redirect:event/events/list";
+
+        //TODO Temp logic
+        List<Event> events = eventService.getAll();
+
+
+        event.setId(events.size() + 1);
+        eventService.save(event);
+
+        return "redirect:/events/list";
     }
 
     @GetMapping("/showFormForRSVP")

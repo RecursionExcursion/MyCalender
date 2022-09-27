@@ -10,7 +10,7 @@ public interface ApplicationDao<T> {
 
     void save(T t);
 
-    void update(T s, String[] params);
+    void update(int id, T s);
 
     void delete(T t);
 }
