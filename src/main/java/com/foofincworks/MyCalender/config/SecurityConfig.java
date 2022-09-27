@@ -40,18 +40,19 @@ public class SecurityConfig {
 
         //Set up and build in-memory profile(s)
         UserDetails admin = users
-                .username("foof")
-                .password("marshal")
+                .username("foof")//foof
+                .password("dog")//dog
                 .roles("ADMIN")
                 .build();
 
         return new InMemoryUserDetailsManager(admin);
     }
-
 //    @Bean
-//    public PasswordEncoder encoder(){
+//    public PasswordEncoder passwordEncoder(){
 //        return new BCryptPasswordEncoder();
 //    }
+
+
 
     //TODO Add password encryption, use DB for best practice?
 }
