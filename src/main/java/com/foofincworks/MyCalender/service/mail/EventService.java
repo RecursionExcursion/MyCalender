@@ -33,8 +33,8 @@ public class EventService implements ApplicationService<Event> {
     }
 
     @Override
-    public void update(Event s, String[] params) {
-        eventDao.update(s, params);
+    public void update(int eventId, Event event) {
+        eventDao.update(eventId, event);
     }
 
     @Override

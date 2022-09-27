@@ -1,25 +1,32 @@
-[ {
-  "id" : 1,
-  "eventDate" : "9/22/22",
-  "eventLocation" : "Grand Rapids",
-  "startTime" : "12:30",
-  "endTime" : "14:30",
-  "eventName" : "Tech-Meet Up",
-  "eventDescription" : "Come meet us at sloths house!"
-}, {
-  "id" : 2,
-  "eventDate" : "9/30/22",
-  "eventLocation" : "Grand Rapids",
-  "startTime" : "13:30",
-  "endTime" : "14:30",
-  "eventName" : "Tech-Booze",
-  "eventDescription" : "Come meet us at sloths fav bar"
-}, {
-  "id" : 3,
-  "eventDate" : "10/22/22",
-  "eventLocation" : "Grand Rapids",
-  "startTime" : "15:30",
-  "endTime" : "17:30",
-  "eventName" : "Tech-Lunch",
-  "eventDescription" : "Come meet us at sloths fav brunch spot!"
-} ]
+[
+  {
+    "id": 1,
+    "eventDate": "9/22/22",
+    "eventLocation": "Grand Rapids",
+    "startTime": "12:30",
+    "endTime": "14:30",
+    "eventName": "Tech-Meet Up",
+    "eventDescription": "Come meet us at sloths house!",
+    "approved": true
+  },
+  {
+    "id": 2,
+    "eventDate": "9/30/22",
+    "eventLocation": "Grand Rapids",
+    "startTime": "13:30",
+    "endTime": "14:30",
+    "eventName": "Tech-Booze",
+    "eventDescription": "Come meet us at sloths fav bar",
+    "approved": true
+  },
+  {
+    "id": 3,
+    "eventDate": "10/22/22",
+    "eventLocation": "Grand Rapids",
+    "startTime": "15:30",
+    "endTime": "17:30",
+    "eventName": "Tech-Lunch",
+    "eventDescription": "Come meet us at sloths fav brunch spot!",
+    "approved": false
+  }
+]

@@ -12,6 +12,7 @@ public class Event {
     private String endTime;
     private String eventName;
     private String eventDescription;
+    private boolean approved;
 
     public Event() {
     }
@@ -22,7 +23,9 @@ public class Event {
                  String startTime,
                  String endTime,
                  String eventName,
-                 String eventDescription) {
+                 String eventDescription,
+                 boolean approved) {
+
         this.id = id;
         this.eventDate = eventDate;
         this.eventLocation = eventLocation;
@@ -30,6 +33,24 @@ public class Event {
         this.endTime = endTime;
         this.eventName = eventName;
         this.eventDescription = eventDescription;
+        this.approved = approved;
+    }
+
+    public Event(String eventDate,
+                 String eventLocation,
+                 String startTime,
+                 String endTime,
+                 String eventName,
+                 String eventDescription,
+                 boolean approved) {
+
+        this.eventDate = eventDate;
+        this.eventLocation = eventLocation;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.eventName = eventName;
+        this.eventDescription = eventDescription;
+        this.approved = approved;
     }
 
     public int getId() {
@@ -86,5 +107,13 @@ public class Event {
 
     public void setEndTime(String endTime) {
         this.endTime = endTime;
+    }
+
+    public boolean isApproved() {
+        return approved;
+    }
+
+    public void setApproved(boolean approved) {
+        this.approved = approved;
     }
 }
