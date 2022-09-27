@@ -31,7 +31,7 @@ public class EventController {
         return "event/list-events";
     }
 
-    @GetMapping("showFormForAdd")
+    @GetMapping("/showFormForAdd")
     public String showFormForAdd(Model model) {
 
         Event newEvent = new Event();

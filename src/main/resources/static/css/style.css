@@ -71,3 +71,27 @@ a{
     color: #008BA8;
 }
 
+.adminLogin{
+    display: flex;
+}
+
+.adminLogin a{
+    margin: auto;
+}
+
+.adminActions{
+    display: block;
+    margin: 2px 0 2px 0;
+}
+
+#adminEdit{
+    background-color: #008BA8;
+}
+
+#adminApprove{
+    background-color: rgb(111, 215, 111);
+}
+
+#adminDelete{
+    background-color: rgb(255, 93, 93);
+}
