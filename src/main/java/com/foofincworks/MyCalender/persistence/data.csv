@@ -1,4 +1,4 @@
-ID,DATE,EVENTLOCATION,STARTTIME,ENDTIME,EVENTNAME,EVENTDESCRIPTION
-1,9/22/22,Grand Rapids,12:30,14:30,Tech-Meet Up,Come meet us at sloths house!
-2,9/30/22,Grand Rapids,13:30,14:30,Tech-Booze,Come meet us at sloths fav bar
-3,10/22/22,Grand Rapids,15:30,17:30,Tech-Lunch,Come meet us at sloths fav brunch spot!
+ID,DATE,EVENTLOCATION,STARTTIME,ENDTIME,EVENTNAME,EVENTDESCRIPTION,APPROVED
+1,9/22/22,Grand Rapids,12:30,14:30,Tech-Meet Up,Come meet us at sloths house!,true
+2,9/30/22,Grand Rapids,13:30,14:30,Tech-Booze,Come meet us at sloths fav bar,true
+3,10/22/22,Grand Rapids,15:30,17:30,Tech-Lunch,Come meet us at sloths fav brunch spot!,false

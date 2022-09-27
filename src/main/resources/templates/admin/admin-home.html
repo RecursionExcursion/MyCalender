@@ -96,7 +96,7 @@
         </thead>
 
         <tbody>
-          <tr th:each="tempEvent: ${events}">
+          <tr th:each="tempEvent: ${unapprovedEvents}">
             <td th:text="${tempEvent.eventDate}"></td>
             <td th:text="${tempEvent.eventName}"></td>
             <td th:text="${tempEvent.eventLocation}"></td>
@@ -112,14 +112,14 @@
               <!-- update methods -->
               <a
                 id="adminEdit"
-                th:href="@{/events/showFormForRSVP(eventId=${tempEvent.id})}"
+                th:href="@{/admin/showFormForUpdate(eventId=${tempEvent.id})}"
                 class="btn btn-danger btn-sm adminActions"
               >
                 Edit
               </a>
               <a
                 id="adminApprove"
-                th:href="@{/events/showFormForRSVP(eventId=${tempEvent.id})}"
+                th:href="@{/admin/approve(eventId=${tempEvent.id})}"
                 class="btn btn-danger btn-sm adminActions"
               >
                 Approve
@@ -127,7 +127,7 @@
 
               <a
                 id="adminDelete"
-                th:href="@{/events/showFormForRSVP(eventId=${tempEvent.id})}"
+                th:href="@{/admin/delete(eventId=${tempEvent.id})}"
                 class="btn btn-danger btn-sm adminActions"
               >
                 Delete
