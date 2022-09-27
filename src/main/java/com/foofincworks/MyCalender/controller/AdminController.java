@@ -40,7 +40,7 @@ public class AdminController {
     }
 
 
-// add event method to get rsvps
+    // add event method to get rsvps
     @GetMapping("/showRSVPList")
     public String showRSVPList(@RequestParam("eventId") int id, Model model) {
 
@@ -58,8 +58,8 @@ public class AdminController {
         model.addAttribute("event", event.getEventName());
 
         return "admin/rsvp-list";
+    }
 
-=======
     @PostMapping("/save")
     public String saveEvent(@ModelAttribute("event") Event event) {
         eventService.save(event);
