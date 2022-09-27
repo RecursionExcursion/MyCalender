@@ -21,7 +21,7 @@ public class SecurityConfig {
                     //removes security from given APIs ("/**" -> all levels below)
                     (requests) -> requests
                             .antMatchers("/admin/**").hasRole("ADMIN")
-                            .antMatchers("/events/**", "/assets/**", "/css/**").permitAll()
+                            .antMatchers("/","/events/**", "/assets/**", "/css/**").permitAll()
                             .anyRequest().authenticated()
             )
             .formLogin((form) -> form.permitAll()
