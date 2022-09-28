@@ -1,5 +1,7 @@
 package com.foofincworks.MyCalender.entity;
 
+import java.util.List;
+
 public class Event {
 
     private int id;
@@ -13,6 +15,7 @@ public class Event {
     private String eventName;
     private String eventDescription;
     private boolean approved;
+    private List<RSVP> rsvpList;
 
     public Event() {
     }
@@ -24,7 +27,8 @@ public class Event {
                  String endTime,
                  String eventName,
                  String eventDescription,
-                 boolean approved) {
+                 boolean approved,
+                 List<RSVP> rsvpList) {
 
         this.id = id;
         this.eventDate = eventDate;
@@ -34,6 +38,7 @@ public class Event {
         this.eventName = eventName;
         this.eventDescription = eventDescription;
         this.approved = approved;
+        this.rsvpList = rsvpList;
     }
 
     public Event(String eventDate,
@@ -42,7 +47,8 @@ public class Event {
                  String endTime,
                  String eventName,
                  String eventDescription,
-                 boolean approved) {
+                 boolean approved,
+                 List<RSVP> rsvpList) {
 
         this.eventDate = eventDate;
         this.eventLocation = eventLocation;
@@ -51,6 +57,7 @@ public class Event {
         this.eventName = eventName;
         this.eventDescription = eventDescription;
         this.approved = approved;
+        this.rsvpList = rsvpList;
     }
 
     public int getId() {
@@ -115,5 +122,13 @@ public class Event {
 
     public void setApproved(boolean approved) {
         this.approved = approved;
+    }
+
+    public List<RSVP> getRsvpList() {
+        return rsvpList;
+    }
+
+    public void setRsvpList(List<RSVP> rsvpList) {
+        this.rsvpList = rsvpList;
     }
 }
