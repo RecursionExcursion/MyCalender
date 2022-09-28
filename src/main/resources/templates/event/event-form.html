@@ -96,5 +96,12 @@
       </p>
       <a th:href="@{/events/list}">Back to Event List</a>
     </div>
+
+    <script th:inline="javascript">
+      if (`${event}` !== null){
+        document.getElementById('eventDate').setAttribute("value", new Date(`${event.eventDate}`))
+      }
+    </script>
+
   </body>
 </html>
