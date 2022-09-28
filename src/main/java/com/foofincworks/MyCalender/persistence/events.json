@@ -28,14 +28,14 @@
     ]
   },
   {
-    "id": 3,
-    "eventDate": "10/22/22",
+    "id": 4,
+    "eventDate": "2022-10-22",
     "eventLocation": "Grand Rapids",
     "startTime": "15:30",
     "endTime": "17:30",
-    "eventName": "Tech-Lunch",
+    "eventName": "Tech-Dinner",
     "eventDescription": "Come meet us at sloths fav brunch spot!",
     "approved": false,
-    "rsvpList": []
+    "rsvpList": null
   }
 ]
