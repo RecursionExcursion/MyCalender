@@ -1,6 +1,7 @@
 package com.foofincworks.MyCalender.controller;
 
 import com.foofincworks.MyCalender.entity.Event;
+import com.foofincworks.MyCalender.entity.RSVP;
 import com.foofincworks.MyCalender.service.mail.EmailSenderService;
 import com.foofincworks.MyCalender.service.mail.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,19 +48,20 @@ public class EventController {
     @PostMapping("/save")
     public String saveEvent(@ModelAttribute("event") Event event) {
 
-        String toEmail = "cklawieter@gmail.com";
-
-        String subject = "New event submission";
-
-        String body = "Event name- " + event.getEventName() +
-                "\n Event Date- " + event.getEventDate() +
-                "\n Event Location- " + event.getEventLocation() +
-                "\n Event Start Time- " + event.getStartTime() +
-                "\n Event End Time- " + event.getEndTime() +
-                "\n Event Description- " + event.getEventDescription();
-
-
-        emailSenderService.sendSimpleEmail(toEmail, body, subject);
+        //TODO Email service is off for testing
+//        String toEmail = "cklawieter@gmail.com";
+//
+//        String subject = "New event submission";
+//
+//        String body = "Event name- " + event.getEventName() +
+//                "\n Event Date- " + event.getEventDate() +
+//                "\n Event Location- " + event.getEventLocation() +
+//                "\n Event Start Time- " + event.getStartTime() +
+//                "\n Event End Time- " + event.getEndTime() +
+//                "\n Event Description- " + event.getEventDescription();
+//
+//
+//        emailSenderService.sendSimpleEmail(toEmail, body, subject);
 
 
         //TODO Temp logic
@@ -86,9 +88,25 @@ public class EventController {
         }
 
         model.addAttribute("event", event);
+        model.addAttribute("rsvp", new RSVP());
 
         return "event/rsvp-form";
+    }
 
+    @PostMapping("/rsvp")
+    public String saveRSVP(@RequestParam("eventId") int id,
+                           @ModelAttribute("rsvp") RSVP rsvp) {
+
+        Event eventToAddRSVP = eventService.get(id);
+
+        eventToAddRSVP.getRsvpList().add(rsvp);
+        eventService.update(id,eventToAddRSVP);
+
+        System.out.println(id);
+        System.out.println(rsvp.getFirstName());
+
+
+        return "redirect:/events/list";
     }
 
 
