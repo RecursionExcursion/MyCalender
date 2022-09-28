@@ -97,14 +97,14 @@ public class EventController {
     public String saveRSVP(@RequestParam("eventId") int id,
                            @ModelAttribute("rsvp") RSVP rsvp) {
 
+        //Get event to add rsvp to
         Event eventToAddRSVP = eventService.get(id);
 
+        //add rsvp to rsvpList
         eventToAddRSVP.getRsvpList().add(rsvp);
-        eventService.update(id,eventToAddRSVP);
 
-        System.out.println(id);
-        System.out.println(rsvp.getFirstName());
-
+        //Save changes to json or DB
+        eventService.update(id, eventToAddRSVP);
 
         return "redirect:/events/list";
     }

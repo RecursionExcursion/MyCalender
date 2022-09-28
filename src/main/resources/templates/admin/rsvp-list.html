@@ -61,10 +61,13 @@
             <td>
                 <!-- update method -->
                 <a
-                        href="#">
-                    <!--                th:href="@{/events/showFormForRSVP(eventId=${tempEvent.id})}"-->
-                    <!--                class="btn btn-danger btn-sm"-->
-                    <!--              >-->
+                        th:href="@{/admin/delete/rsvp(eventId=${event.id},
+                                                  rsvpFirstName=${tempRSVP.firstName},
+                                                  rsvpLastName=${tempRSVP.lastName},
+                                                  rsvpEmail=${tempRSVP.email}
+                                                  )}"
+                        class="btn btn-danger btn-sm"
+                >
                     Delete RSVP
                 </a>
             </td>

@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/admin")
@@ -106,6 +107,42 @@ public class AdminController {
         }
 
         eventService.delete(eventToDelete);
+
+        return "redirect:/admin/home";
+
+    }
+
+    @GetMapping("/delete/rsvp")
+    public String deleteRSVP(@RequestParam Map<String, String> allParams) {
+
+        //Get all values from Map
+        int eventID = Integer.parseInt(allParams.get("eventId"));
+        String rsvpFirstName = allParams.get("rsvpFirstName");
+        String rsvpLastName = allParams.get("rsvpLastName");
+        String rsvpEmail = allParams.get("rsvpEmail");
+
+        //Create faux RSVP
+        RSVP rsvpToRemove = new RSVP();
+        rsvpToRemove.setFirstName(rsvpFirstName);
+        rsvpToRemove.setLastName(rsvpLastName);
+        rsvpToRemove.setEmail(rsvpEmail);
+
+        //Get Event from ID
+        Event event = eventService.get(eventID);
+
+        //Compare RSVP from Event RSVP List to Faux RSVP,
+        // If they are equal, delete the RSVP
+        for (RSVP rsvp : event.getRsvpList()) {
+            if (rsvp.getFirstName().equals(rsvpToRemove.getFirstName()) &&
+                    rsvp.getLastName().equals(rsvpToRemove.getLastName()) &&
+                    rsvp.getEmail().equals(rsvpToRemove.getEmail())) {
+                event.getRsvpList().remove(rsvp);
+                break;
+            }
+        }
+
+        //Save Event
+        eventService.update(eventID, event);
 
         return "redirect:/admin/home";
 
