@@ -98,7 +98,7 @@
     </div>
 
     <script th:inline="javascript">
-      if (`${event}` !== null){
+      if (event !== null){
         document.getElementById('eventDate').setAttribute("value", new Date(`${event.eventDate}`))
       }
     </script>
