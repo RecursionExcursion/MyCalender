@@ -28,11 +28,11 @@ public class EventController {
 
     @GetMapping("/list")
     public String listEvents(Model model) {
-        List<Event> events = eventService.getAll();
 
-        List<Event> approvedEvents = events.stream().filter(Event::isApproved).toList();
+        List<Event> approvedEvents = eventService.getAll().stream().filter(Event::isApproved).toList();
 
         model.addAttribute("events", approvedEvents);
+
         return "event/list-events";
     }
 
