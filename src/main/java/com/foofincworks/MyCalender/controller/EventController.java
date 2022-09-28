@@ -2,6 +2,7 @@ package com.foofincworks.MyCalender.controller;
 
 import com.foofincworks.MyCalender.entity.Event;
 import com.foofincworks.MyCalender.entity.RSVP;
+import com.foofincworks.MyCalender.persistence.EventIdPersistence;
 import com.foofincworks.MyCalender.service.mail.EmailSenderService;
 import com.foofincworks.MyCalender.service.mail.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,12 +64,10 @@ public class EventController {
 //
 //        emailSenderService.sendSimpleEmail(toEmail, body, subject);
 
+        int id = EventIdPersistence.getInstance().getEventId();
 
-        //TODO Temp logic
-        List<Event> events = eventService.getAll();
+        event.setId(id);
 
-
-        event.setId(events.size() + 1);
         eventService.save(event);
 
         return "redirect:/events/list";
@@ -77,15 +76,7 @@ public class EventController {
     @GetMapping("/showFormForRSVP")
     public String showFormForRSVP(@RequestParam("eventId") int id, Model model) {
 
-        Event event = null;
-
-        List<Event> events = eventService.getAll();
-
-        for (Event e : events) {
-            if (e.getId() == id) {
-                event = e;
-            }
-        }
+        Event event = eventService.get(id);
 
         model.addAttribute("event", event);
         model.addAttribute("rsvp", new RSVP());
@@ -97,10 +88,8 @@ public class EventController {
     public String saveRSVP(@RequestParam("eventId") int id,
                            @ModelAttribute("rsvp") RSVP rsvp) {
 
-        //Get event to add rsvp to
         Event eventToAddRSVP = eventService.get(id);
 
-        //add rsvp to rsvpList
         eventToAddRSVP.getRsvpList().add(rsvp);
 
         //Save changes to json or DB

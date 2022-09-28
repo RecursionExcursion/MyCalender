@@ -41,6 +41,7 @@ public class Event {
         this.rsvpList = rsvpList;
     }
 
+    //No id constructor for DB integration
     public Event(String eventDate,
                  String eventLocation,
                  String startTime,

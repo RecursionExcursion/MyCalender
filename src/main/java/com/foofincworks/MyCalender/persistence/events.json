@@ -8,7 +8,7 @@
     "eventName": "Tech-Meet Up",
     "eventDescription": "Come meet us at sloths house!",
     "approved": true,
-    "rsvpList": []
+    "rsvpList": null
   },
   {
     "id": 2,

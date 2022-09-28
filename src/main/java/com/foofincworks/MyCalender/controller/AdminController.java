@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -25,9 +26,18 @@ public class AdminController {
 
     @GetMapping("/home")
     public String getAdmin(Model model) {
-        List<Event> events = eventService.getAll();
-        List<Event> approvedEvents = events.stream().filter(event -> event.isApproved()).toList();
-        List<Event> unapprovedEvents = events.stream().filter(event -> !event.isApproved()).toList();
+
+        List<Event> approvedEvents = new ArrayList<>();
+        List<Event> unapprovedEvents = new ArrayList<>();
+
+        //Assign all events to a list base on isApproved boolean
+        eventService.getAll().forEach(event -> {
+            if (event.isApproved()) {
+                approvedEvents.add(event);
+            } else {
+                unapprovedEvents.add(event);
+            }
+        });
 
         model.addAttribute("events", approvedEvents);
         model.addAttribute("unapprovedEvents", unapprovedEvents);
@@ -40,8 +50,7 @@ public class AdminController {
     @GetMapping("/showRSVPList")
     public String showRSVPList(@RequestParam("eventId") int id, Model model) {
 
-        Event event = null;
-        event = eventService.get(id);
+        Event event = eventService.get(id);
         List<RSVP> rsvps = event.getRsvpList();
 
         model.addAttribute("event", event);
@@ -58,14 +67,7 @@ public class AdminController {
 
     @GetMapping("/approve")
     public String approveEvent(@RequestParam("eventId") int id) {
-        Event updatedEvent = null;
-
-        for (Event e : eventService.getAll()) {
-            if (e.getId() == id) {
-                updatedEvent = e;
-                break;
-            }
-        }
+        Event updatedEvent = eventService.get(id);
 
         if (updatedEvent == null) {
             throw new RuntimeException("Event does not exist");
@@ -80,12 +82,10 @@ public class AdminController {
 
     @GetMapping("/showFormForUpdate")
     public String showFormForUpdate(@RequestParam("eventId") int id, Model model) {
-        //form ref
 
         Event event = eventService.get(id);
 
         model.addAttribute("event", event);
-
 
         return "event/event-form";
     }
@@ -93,23 +93,15 @@ public class AdminController {
     @GetMapping("/delete")
     public String deleteEvent(@RequestParam("eventId") int id) {
 
-        Event eventToDelete = null;
-
-        for (Event e : eventService.getAll()) {
-            if (e.getId() == id) {
-                eventToDelete = e;
-                break;
-            }
-        }
+        Event eventToDelete = eventService.get(id);
 
         if (eventToDelete == null) {
-            throw new RuntimeException("Event does not exist");
+            throw new RuntimeException("Event id does not exist");
         }
 
         eventService.delete(eventToDelete);
 
         return "redirect:/admin/home";
-
     }
 
     @GetMapping("/delete/rsvp")
@@ -122,10 +114,10 @@ public class AdminController {
         String rsvpEmail = allParams.get("rsvpEmail");
 
         //Create faux RSVP
-        RSVP rsvpToRemove = new RSVP();
-        rsvpToRemove.setFirstName(rsvpFirstName);
-        rsvpToRemove.setLastName(rsvpLastName);
-        rsvpToRemove.setEmail(rsvpEmail);
+        RSVP rSVPFromPage = new RSVP();
+        rSVPFromPage.setFirstName(rsvpFirstName);
+        rSVPFromPage.setLastName(rsvpLastName);
+        rSVPFromPage.setEmail(rsvpEmail);
 
         //Get Event from ID
         Event event = eventService.get(eventID);
@@ -133,9 +125,13 @@ public class AdminController {
         //Compare RSVP from Event RSVP List to Faux RSVP,
         // If they are equal, delete the RSVP
         for (RSVP rsvp : event.getRsvpList()) {
-            if (rsvp.getFirstName().equals(rsvpToRemove.getFirstName()) &&
-                    rsvp.getLastName().equals(rsvpToRemove.getLastName()) &&
-                    rsvp.getEmail().equals(rsvpToRemove.getEmail())) {
+
+            boolean rSVPsAreEqual =
+                    rsvp.getFirstName().equals(rSVPFromPage.getFirstName()) &&
+                            rsvp.getLastName().equals(rSVPFromPage.getLastName()) &&
+                            rsvp.getEmail().equals(rSVPFromPage.getEmail());
+
+            if (rSVPsAreEqual) {
                 event.getRsvpList().remove(rsvp);
                 break;
             }
