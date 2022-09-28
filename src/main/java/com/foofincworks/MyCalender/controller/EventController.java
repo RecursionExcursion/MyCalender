@@ -108,6 +108,4 @@ public class EventController {
 
         return "redirect:/events/list";
     }
-
-
 }

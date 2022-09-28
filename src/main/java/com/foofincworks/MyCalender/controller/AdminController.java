@@ -1,17 +1,12 @@
 package com.foofincworks.MyCalender.controller;
 
 import com.foofincworks.MyCalender.entity.Event;
+import com.foofincworks.MyCalender.entity.RSVP;
 import com.foofincworks.MyCalender.service.mail.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import org.springframework.web.bind.annotation.*;
-
 
 import java.util.List;
 
@@ -45,17 +40,11 @@ public class AdminController {
     public String showRSVPList(@RequestParam("eventId") int id, Model model) {
 
         Event event = null;
+        event = eventService.get(id);
+        List<RSVP> rsvps = event.getRsvpList();
 
-        List<Event> events = eventService.getAll();
-
-        for (Event e : events) {
-            if (e.getId() == id) {
-                event = e;
-            }
-        }
-
-        // model.addAttribute("RSVPs", event);
-        model.addAttribute("event", event.getEventName());
+        model.addAttribute("event", event);
+        model.addAttribute("rsvps", rsvps);
 
         return "admin/rsvp-list";
     }
