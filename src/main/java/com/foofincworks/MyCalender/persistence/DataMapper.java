@@ -34,7 +34,7 @@ public class DataMapper {
         }
     }
 
-    List<Event> getDataFromJSON() {
+    private List<Event> getDataFromJSON() {
         try {
             mapper = new ObjectMapper();
             List<Event> events = mapper.readValue(eventsJSON, new TypeReference<List<Event>>() {

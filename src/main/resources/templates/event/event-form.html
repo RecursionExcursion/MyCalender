@@ -45,6 +45,7 @@
         <input
           type="text"
           th:field="*{eventName}"
+          th:required="required"
           class="form-control mb-4 col-4"
           placeholder="Event Name"
         />
@@ -60,6 +61,7 @@
         <input
           type="text"
           th:field="*{eventLocation}"
+          th:required="required"
           class="form-control mb-4 col-4"
           placeholder="Event Location"
         />
@@ -69,6 +71,7 @@
           id="eventDate"
           type="date"
           th:field="*{eventDate}"
+          th:required="required"
           class="form-control mb-4 col-4"
         />
 
@@ -77,6 +80,7 @@
           id="startTime"
           type="time"
           th:field="*{startTime}"
+          th:required="required"
           class="form-control mb-4 col-4"
         />
 
@@ -85,6 +89,7 @@
           id="endTime"
           type="time"
           th:field="*{endTime}"
+          th:required="required"
           class="form-control mb-4 col-4"
         />
 
