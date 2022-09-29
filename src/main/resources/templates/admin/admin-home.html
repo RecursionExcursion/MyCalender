@@ -57,7 +57,7 @@
 
         <tbody>
           <tr th:each="tempEvent: ${events}">
-            <td th:text="${tempEvent.eventDate}"></td>
+            <td class="eventDate" th:text="${tempEvent.eventDate}"></td>
             <td th:text="${tempEvent.eventName}"></td>
             <td th:text="${tempEvent.eventLocation}"></td>
 
@@ -97,7 +97,7 @@
 
         <tbody>
           <tr th:each="tempEvent: ${unapprovedEvents}">
-            <td th:text="${tempEvent.eventDate}"></td>
+            <td class="eventDate" th:text="${tempEvent.eventDate}"></td>
             <td th:text="${tempEvent.eventName}"></td>
             <td th:text="${tempEvent.eventLocation}"></td>
 
@@ -144,5 +144,12 @@
         Submit Event
       </a>
     </div>
+
+    <script th:inline="javascript">
+      document.querySelectorAll('.eventDate').forEach(element => {
+        let unformatedDate = new Date(element.textContent)
+        element.textContent = unformatedDate.toDateString()
+      });
+    </script>
   </body>
 </html>
