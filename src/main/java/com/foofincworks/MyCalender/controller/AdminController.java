@@ -151,7 +151,10 @@ public class AdminController {
         //Save Event
         eventService.update(eventID, event);
 
-        return "redirect:/admin/home";
+
+        String returnParam = "?eventId=";
+
+        return "redirect:/admin/showRSVPList" + returnParam + eventID;
 
     }
 }

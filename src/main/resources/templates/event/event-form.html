@@ -99,7 +99,7 @@
       <p>
         All event submissions will be reviewed before appearing on calender
       </p>
-      <a th:href="@{/events/list}">Back to Event List</a>
+      <a th:href="${#authorization.expression('hasRole(''ADMIN'')')} ? @{/admin/home} : @{/events/list}">Back to Event List</a>
     </div>
 
     <script th:inline="javascript">
