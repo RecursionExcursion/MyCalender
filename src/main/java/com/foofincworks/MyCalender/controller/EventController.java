@@ -3,6 +3,7 @@ package com.foofincworks.MyCalender.controller;
 import com.foofincworks.MyCalender.entity.Event;
 import com.foofincworks.MyCalender.entity.RSVP;
 import com.foofincworks.MyCalender.persistence.EventIdPersistence;
+import com.foofincworks.MyCalender.persistence.settings.SettingsController;
 import com.foofincworks.MyCalender.service.mail.EmailSenderService;
 import com.foofincworks.MyCalender.service.mail.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,20 +50,30 @@ public class EventController {
     @PostMapping("/save")
     public String saveEvent(@ModelAttribute("event") Event event) {
 
-        //TODO Email service is off for testing
-//        String toEmail = "cklawieter@gmail.com";
-//
-//        String subject = "New event submission";
-//
-//        String body = "Event name- " + event.getEventName() +
-//                "\n Event Date- " + event.getEventDate() +
-//                "\n Event Location- " + event.getEventLocation() +
-//                "\n Event Start Time- " + event.getStartTime() +
-//                "\n Event End Time- " + event.getEndTime() +
-//                "\n Event Description- " + event.getEventDescription();
-//
-//
-//        emailSenderService.sendSimpleEmail(toEmail, body, subject);
+        if (event.getId() != 0) {
+
+            eventService.update(event.getId(), event);
+
+            return "redirect:/admin/home";
+        }
+
+        boolean emailNotificationsEnabled = SettingsController.getInstance().getSettings().enableEmailNotifications;
+
+        if (emailNotificationsEnabled) {
+            String toEmail = SettingsController.getInstance().getSettings().emailAddress;
+
+            String subject = "New event submission";
+
+            String body = "Event name- " + event.getEventName() +
+                    "\n Event Date- " + event.getEventDate() +
+                    "\n Event Location- " + event.getEventLocation() +
+                    "\n Event Start Time- " + event.getStartTime() +
+                    "\n Event End Time- " + event.getEndTime() +
+                    "\n Event Description- " + event.getEventDescription();
+
+
+            emailSenderService.sendSimpleEmail(toEmail, body, subject);
+        }
 
         int id = EventIdPersistence.getInstance().getEventId();
 
