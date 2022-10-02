@@ -76,6 +76,12 @@
               >
                 RSVP List
               </a>
+              <a
+                th:href="@{/admin/delete(eventId=${tempEvent.id})}"
+                class="btn btn-danger btn-sm adminActions"
+              >
+                Delete
+              </a>
             </td>
           </tr>
         </tbody>
@@ -144,11 +150,12 @@
         Submit Event
       </a>
     </div>
+    <a th:href="@{/events/list}">Back to Event List</a>
 
     <script th:inline="javascript">
-      document.querySelectorAll('.eventDate').forEach(element => {
-        let unformatedDate = new Date(element.textContent)
-        element.textContent = unformatedDate.toDateString()
+      document.querySelectorAll(".eventDate").forEach((element) => {
+        let unformatedDate = new Date(element.textContent);
+        element.textContent = unformatedDate.toDateString();
       });
     </script>
   </body>
