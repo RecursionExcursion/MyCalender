@@ -36,7 +36,7 @@
 
       <form
         action="#"
-        th:action="@{/events/save}"
+        th:action="${#authorization.expression('hasRole(''ADMIN'')')} ? @{/admin/save} : @{/events/save}"
         th:object="${event}"
         method="post"
       >
