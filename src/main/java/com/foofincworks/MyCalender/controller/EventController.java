@@ -34,6 +34,8 @@ public class EventController {
 
         model.addAttribute("events", approvedEvents);
 
+//        if statement for admin redirect?
+
         return "event/list-events";
     }
 

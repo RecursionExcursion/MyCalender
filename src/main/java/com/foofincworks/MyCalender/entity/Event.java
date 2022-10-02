@@ -1,5 +1,6 @@
 package com.foofincworks.MyCalender.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Event {
@@ -18,6 +19,7 @@ public class Event {
     private List<RSVP> rsvpList;
 
     public Event() {
+        rsvpList = new ArrayList<>();
     }
 
     public Event(int id,
@@ -27,8 +29,7 @@ public class Event {
                  String endTime,
                  String eventName,
                  String eventDescription,
-                 boolean approved,
-                 List<RSVP> rsvpList) {
+                 boolean approved) {
 
         this.id = id;
         this.eventDate = eventDate;
@@ -38,7 +39,7 @@ public class Event {
         this.eventName = eventName;
         this.eventDescription = eventDescription;
         this.approved = approved;
-        this.rsvpList = rsvpList;
+        this.rsvpList = new ArrayList<>();
     }
 
     //No id constructor for DB integration
@@ -48,8 +49,7 @@ public class Event {
                  String endTime,
                  String eventName,
                  String eventDescription,
-                 boolean approved,
-                 List<RSVP> rsvpList) {
+                 boolean approved) {
 
         this.eventDate = eventDate;
         this.eventLocation = eventLocation;
@@ -58,7 +58,7 @@ public class Event {
         this.eventName = eventName;
         this.eventDescription = eventDescription;
         this.approved = approved;
-        this.rsvpList = rsvpList;
+        this.rsvpList = new ArrayList<>();
     }
 
     public int getId() {
