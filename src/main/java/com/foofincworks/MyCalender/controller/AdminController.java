@@ -2,6 +2,7 @@ package com.foofincworks.MyCalender.controller;
 
 import com.foofincworks.MyCalender.entity.Event;
 import com.foofincworks.MyCalender.entity.RSVP;
+import com.foofincworks.MyCalender.persistence.EventIdPersistence;
 import com.foofincworks.MyCalender.service.mail.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -61,7 +62,17 @@ public class AdminController {
 
     @PostMapping("/save")
     public String saveEvent(@ModelAttribute("event") Event event) {
-        eventService.save(event);
+
+        if (event.getId() != 0) {
+            eventService.update(event.getId(), event);
+        } else {
+
+            int id = EventIdPersistence.getInstance().getEventId();
+
+            event.setId(id);
+
+            eventService.save(event);
+        }
         return "redirect:/admin/home";
     }
 

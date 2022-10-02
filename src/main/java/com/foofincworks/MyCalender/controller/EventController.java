@@ -17,8 +17,8 @@ import java.util.List;
 @RequestMapping("/events")
 public class EventController {
 
-    private EmailSenderService emailSenderService;
-    private EventService eventService;
+    private final EmailSenderService emailSenderService;
+    private final EventService eventService;
 
     @Autowired
     public EventController(EmailSenderService emailSenderService, EventService eventService) {
@@ -51,13 +51,6 @@ public class EventController {
 
     @PostMapping("/save")
     public String saveEvent(@ModelAttribute("event") Event event) {
-
-        if (event.getId() != 0) {
-
-            eventService.update(event.getId(), event);
-
-            return "redirect:/admin/home";
-        }
 
         boolean emailNotificationsEnabled = SettingsController.getInstance().getSettings().enableEmailNotifications;
 
