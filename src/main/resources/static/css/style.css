@@ -84,14 +84,19 @@ a{
     margin: 2px 0 2px 0;
 }
 
-#adminEdit{
+.adminEdit{
     background-color: #008BA8;
 }
 
 #adminApprove{
-    background-color: rgb(111, 215, 111);
+    background-color: rgb(33, 162, 142);
 }
 
-#adminDelete{
+
+.adminDelete{
     background-color: rgb(255, 93, 93);
+}
+
+.rsvpList{
+    background-color: rgb(33, 162, 142);
 }

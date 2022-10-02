@@ -51,7 +51,7 @@
             <th class="text-center">Location</th>
             <th class="text-center">Time</th>
             <th class="text-center">Description</th>
-            <th>RSVP List</th>
+            <th>Actions</th>
           </tr>
         </thead>
 
@@ -72,13 +72,19 @@
             <td>
               <a
                 th:href="@{/admin/showRSVPList(eventId=${tempEvent.id})}"
-                class="btn btn-danger btn-sm"
+                class="btn btn-danger btn-sm rsvpList"
               >
                 RSVP List
               </a>
               <a
+                th:href="@{/admin/showFormForUpdate(eventId=${tempEvent.id})}"
+                class="btn btn-danger btn-sm adminActions adminEdit"
+              >
+                Edit
+              </a>
+              <a
                 th:href="@{/admin/delete(eventId=${tempEvent.id})}"
-                class="btn btn-danger btn-sm adminActions"
+                class="btn btn-danger btn-sm adminActions adminDelete"
               >
                 Delete
               </a>
@@ -117,24 +123,22 @@
             <td>
               <!-- update methods -->
               <a
-                id="adminEdit"
-                th:href="@{/admin/showFormForUpdate(eventId=${tempEvent.id})}"
-                class="btn btn-danger btn-sm adminActions"
-              >
-                Edit
-              </a>
-              <a
                 id="adminApprove"
                 th:href="@{/admin/approve(eventId=${tempEvent.id})}"
                 class="btn btn-danger btn-sm adminActions"
               >
                 Approve
               </a>
+              <a
+                th:href="@{/admin/showFormForUpdate(eventId=${tempEvent.id})}"
+                class="btn btn-danger btn-sm adminActions adminEdit"
+              >
+                Edit
+              </a>
 
               <a
-                id="adminDelete"
                 th:href="@{/admin/delete(eventId=${tempEvent.id})}"
-                class="btn btn-danger btn-sm adminActions"
+                class="btn btn-danger btn-sm adminActions adminDelete"
               >
                 Delete
               </a>
@@ -149,8 +153,9 @@
       >
         Submit Event
       </a>
+      <br />
+      <p><a th:href="@{/events/list}">Back to Event List</a></p>
     </div>
-    <a th:href="@{/events/list}">Back to Event List</a>
 
     <script th:inline="javascript">
       document.querySelectorAll(".eventDate").forEach((element) => {
