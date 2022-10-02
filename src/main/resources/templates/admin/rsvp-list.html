@@ -1,80 +1,97 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+  <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
     <!-- Bootstrap CSS -->
     <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-            crossorigin="anonymous"
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
     />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-            href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa+Ink:wght@400;700&display=swap"
-            rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa+Ink:wght@400;700&display=swap"
+      rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="../css/style.css"/>
+    <link rel="stylesheet" href="../css/style.css" />
 
     <title>FI Events</title>
-</head>
-<body>
-<div class="container">
-    <header>
-        <img src="../assets/images/logo.PNG" alt=""/>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <img src="../assets/images/logo.PNG" alt="" />
         <h3 class="companyName">
-            Foofers Inc. <br/>
-            Event Calendar
+          Foofers Inc. <br />
+          Event Calendar
         </h3>
-    </header>
+      </header>
 
-    <!-- use only data for events happening today -->
-    <h3>RSVP List for <h3 class="eventsHeading" th:text="${event.eventName}"></h3>
-    </h3>
+      <!-- use only data for events happening today -->
+      <div th:id="myDivToPrint">
+        <h3>
+          RSVP List for
+          <h3 class="eventsHeading" th:text="${event.eventName}"></h3>
+        </h3>
 
-    <table class="table table-bordered table-striped">
-        <thead class="thead-dark">
-        <tr>
-            <th class="text-center">First Name</th>
-            <th class="text-center">Last Name</th>
-            <th class="text-center">Email</th>
-            <th>Delete RSVP</th>
-        </tr>
-        </thead>
+        <table class="table table-bordered table-striped rsvp-table">
+          <thead class="thead-dark">
+            <tr>
+              <th class="text-center">First Name</th>
+              <th class="text-center">Last Name</th>
+              <th class="text-center">Email</th>
+              <th>Delete RSVP</th>
+            </tr>
+          </thead>
 
-        <tbody>
-        <tr th:each="tempRSVP: ${rsvps}">
-            <td th:text="${tempRSVP.firstName}"></td>
-            <td th:text="${tempRSVP.lastName}"></td>
-            <td th:text="${tempRSVP.email}"></td>
+          <tbody>
+            <tr th:each="tempRSVP: ${rsvps}">
+              <td th:text="${tempRSVP.firstName}"></td>
+              <td th:text="${tempRSVP.lastName}"></td>
+              <td th:text="${tempRSVP.email}"></td>
 
-
-            <td>
+              <td>
                 <!-- update method -->
                 <a
-                        th:href="@{/admin/delete/rsvp(eventId=${event.id},
+                  th:href="@{/admin/delete/rsvp(eventId=${event.id},
                                                   rsvpFirstName=${tempRSVP.firstName},
                                                   rsvpLastName=${tempRSVP.lastName},
                                                   rsvpEmail=${tempRSVP.email}
                                                   )}"
-                        class="btn btn-danger btn-sm"
+                  class="btn btn-danger btn-sm"
                 >
-                    Delete RSVP
+                  Delete RSVP
                 </a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <a th:href="@{/admin/home}">Back to admin home</a>
-</div>
-</body>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <input type="button" value="Print" onclick="printDiv()"> 
+       <p> <a th:href="@{/admin/home}">Back to admin home</a></p>
+      </div>
+    </div>
+
+    <script th:inline="javascript">
+        function printDiv() {
+            var divContents = document.getElementById("myDivToPrint").innerHTML;
+            var a = window.open('', '', 'height=500, width=500');
+            a.document.write('<html>');
+            a.document.write('<body > <h1> <br>');
+            a.document.write(divContents);
+            a.document.write('</body></html>');
+            a.document.close();
+            a.print();
+        }
+    </script>
+  </body>
 </html>
