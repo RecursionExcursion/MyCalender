@@ -20,7 +20,6 @@ public class Event {
 
     public Event() {
         rsvpList = new ArrayList<>();
-
     }
 
     public Event(int id,
