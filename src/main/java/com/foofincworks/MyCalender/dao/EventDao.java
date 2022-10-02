@@ -42,21 +42,26 @@ public class EventDao implements ApplicationDao<Event> {
     @Override
     public void save(Event event) {
         events.add(event);
-        save();
+        saveToJSON();
     }
 
     @Override
     public void update(int eventId, Event event) {
-        save();
+
+        int index = events.indexOf(get(eventId));
+
+        events.set(index, event);
+
+        saveToJSON();
     }
 
     @Override
     public void delete(Event event) {
         events.remove(event);
-        save();
+        saveToJSON();
     }
 
-    private void save() {
+    private void saveToJSON() {
         dataMapper.mapPOJOToJSON(events);
     }
 }
