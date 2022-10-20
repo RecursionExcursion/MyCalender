@@ -1,5 +1,7 @@
 package com.foofincworks.MyCalender.entity;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,28 +63,17 @@ public class Event implements Comparable<Event> {
 
     @Override
     public int compareTo(Event o) {
-        String[] thisDate = eventDate.split("-");
-        String[] comparedDate = o.getEventDate().split("-");
+        //Date Strings will be submitted as yyyy-MM-dd
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-        //Index 0 == year
-        int thisYear = Integer.parseInt(thisDate[0]);
-        int comparedYear = Integer.parseInt(comparedDate[0]);
+        //Convert Strings to LocalDate Objects
+        LocalDate thisDate = LocalDate.parse(this.eventDate, formatter);
+        LocalDate comparedDate = LocalDate.parse(o.eventDate, formatter);
 
-        if (thisYear < comparedYear) return -1;
-        if (thisYear > comparedYear) return 1;
-
-        //Index 1 == month
-        int thisMonth = Integer.parseInt(thisDate[1]);
-        int comparedMonth = Integer.parseInt(comparedDate[1]);
-
-        if (thisMonth < comparedMonth) return -1;
-        if (thisMonth > comparedMonth) return 1;
-
-        //Index 2 == day
-        int thisDay = Integer.parseInt(thisDate[2]);
-        int comparedDay = Integer.parseInt(comparedDate[2]);
-
-        return Integer.compare(thisDay, comparedDay);
+        //Compare Date Objects
+        if (thisDate.isBefore(comparedDate)) return -1;
+        else if (thisDate.isAfter(comparedDate)) return 1;
+        else return 0;
     }
 
 
