@@ -3,13 +3,10 @@ package com.foofincworks.MyCalender.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Event {
+public class Event implements Comparable<Event> {
 
     private int id;
-
-    //TODO Make date object?
     private String eventDate;
-
     private String eventLocation;
     private String startTime;
     private String endTime;
@@ -60,6 +57,36 @@ public class Event {
         this.approved = approved;
         this.rsvpList = new ArrayList<>();
     }
+
+
+    @Override
+    public int compareTo(Event o) {
+        String[] thisDate = eventDate.split("-");
+        String[] comparedDate = o.getEventDate().split("-");
+
+        //Index 0 == year
+        int thisYear = Integer.parseInt(thisDate[0]);
+        int comparedYear = Integer.parseInt(comparedDate[0]);
+
+        if (thisYear < comparedYear) return -1;
+        if (thisYear > comparedYear) return 1;
+
+        //Index 1 == month
+        int thisMonth = Integer.parseInt(thisDate[1]);
+        int comparedMonth = Integer.parseInt(comparedDate[1]);
+
+        if (thisMonth < comparedMonth) return -1;
+        if (thisMonth > comparedMonth) return 1;
+
+        //Index 2 == day
+        int thisDay = Integer.parseInt(thisDate[2]);
+        int comparedDay = Integer.parseInt(comparedDate[2]);
+
+        return Integer.compare(thisDay, comparedDay);
+    }
+
+
+    //Getters and Setters
 
     public int getId() {
         return id;
@@ -132,4 +159,6 @@ public class Event {
     public void setRsvpList(List<RSVP> rsvpList) {
         this.rsvpList = rsvpList;
     }
+
+
 }

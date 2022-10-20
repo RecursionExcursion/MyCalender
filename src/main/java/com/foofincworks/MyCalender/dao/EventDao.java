@@ -6,6 +6,7 @@ import com.foofincworks.MyCalender.persistence.DataMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collections;
 import java.util.List;
 
 @Repository
@@ -36,6 +37,7 @@ public class EventDao implements ApplicationDao<Event> {
 
     @Override
     public List<Event> getAll() {
+        Collections.sort(events);
         return events;
     }
 
