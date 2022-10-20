@@ -17,7 +17,7 @@ import java.util.Map;
 @RequestMapping("/admin")
 public class AdminController {
 
-    private EventService eventService;
+    private final EventService eventService;
 
     @Autowired
     public AdminController(EventService eventService) {
