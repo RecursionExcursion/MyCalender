@@ -1,4 +1,4 @@
-package com.foofincworks.MyCalender.service.mail;
+package com.foofincworks.MyCalender.service;
 
 import java.util.List;
 

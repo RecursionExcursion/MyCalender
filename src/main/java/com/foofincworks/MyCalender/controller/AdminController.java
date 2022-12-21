@@ -3,7 +3,7 @@ package com.foofincworks.MyCalender.controller;
 import com.foofincworks.MyCalender.entity.Event;
 import com.foofincworks.MyCalender.entity.RSVP;
 import com.foofincworks.MyCalender.persistence.EventIdPersistence;
-import com.foofincworks.MyCalender.service.mail.EventService;
+import com.foofincworks.MyCalender.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

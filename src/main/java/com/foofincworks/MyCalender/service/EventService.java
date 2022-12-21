@@ -1,4 +1,4 @@
-package com.foofincworks.MyCalender.service.mail;
+package com.foofincworks.MyCalender.service;
 
 import com.foofincworks.MyCalender.dao.EventDao;
 import com.foofincworks.MyCalender.entity.Event;

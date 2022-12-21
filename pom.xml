@@ -39,7 +39,7 @@
 		</dependency>
 
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
+			<groupId>org.springframework.boot</groupId>boot
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
