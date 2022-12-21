@@ -25,13 +25,7 @@ public class EventDao implements ApplicationDao<Event> {
 
     @Override
     public Event get(long id) {
-
-        for (Event e : events) {
-            if (e.getId() == id) {
-                return e;
-            }
-        }
-
+        for (Event e : events) if (e.getId() == id) return e;
         return null;
     }
 
@@ -41,6 +35,8 @@ public class EventDao implements ApplicationDao<Event> {
         return events;
     }
 
+    //The methods below will be need to save the JSON when finished
+
     @Override
     public void save(Event event) {
         events.add(event);
@@ -49,11 +45,8 @@ public class EventDao implements ApplicationDao<Event> {
 
     @Override
     public void update(int eventId, Event event) {
-
         int index = events.indexOf(get(eventId));
-
         events.set(index, event);
-
         saveToJSON();
     }
 

@@ -1,4 +1,4 @@
-package com.foofincworks.MyCalender.service.mail;
+package com.foofincworks.MyCalender.service.mail_service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
